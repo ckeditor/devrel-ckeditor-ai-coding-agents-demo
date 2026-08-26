@@ -4,9 +4,15 @@
   "private": true,
   "description": "A static marketing landing page in plain vanilla HTML/CSS/JS, with no build step.",
   "scripts": {
-    "dev": "http-server -p 8080 -c-1"
+    "dev": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "ckeditor5": "^48.4.0",
+    "ckeditor5-premium-features": "^48.4.0"
   }
 }
