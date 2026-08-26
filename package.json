@@ -1,0 +1,12 @@
+{
+  "name": "s6-vanilla-landing-inline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A static marketing landing page in plain vanilla HTML/CSS/JS, with no build step.",
+  "scripts": {
+    "dev": "http-server -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
