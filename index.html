@@ -76,6 +76,26 @@
       <section id="about" class="about">
         <div class="container">
           <p class="kicker">About Trailhead</p>
+          <aside class="storage-demo" aria-labelledby="storage-demo-title">
+            <div>
+              <h3 id="storage-demo-title">Browser storage demo</h3>
+              <p>
+                This section can be saved to localStorage and restored when you
+                return to the page.
+              </p>
+            </div>
+            <div class="storage-actions">
+              <button class="btn btn-small" type="button" id="save-about">
+                Save locally
+              </button>
+              <button class="btn btn-small btn-ghost" type="button" id="reset-about">
+                Reset content
+              </button>
+            </div>
+            <p class="storage-status" id="about-storage-status" role="status" aria-live="polite">
+              No local changes saved yet.
+            </p>
+          </aside>
           <div id="editable-about" class="editable-region">
             <h2>Built by people who actually go outside</h2>
             <p>

@@ -201,6 +201,47 @@ p {
   margin-bottom: 8px;
 }
 
+.storage-demo {
+  max-width: 60ch;
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.storage-demo h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.storage-demo p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.storage-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+button.btn {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+button.btn-ghost {
+  border: 1px solid var(--accent);
+}
+
+.storage-status {
+  margin-top: 12px !important;
+}
+
 .editable-region {
   max-width: 60ch;
 }

@@ -20,9 +20,16 @@ import "ckeditor5/ckeditor5.css";
 import "ckeditor5-premium-features/ckeditor5-premium-features.css";
 
 const STORAGE_KEY = "trailhead:about-html";
+const AUTOSAVE_WAITING_TIME = 1000;
+const editableAbout = document.querySelector("#editable-about");
+const originalData = editableAbout.innerHTML.replace(/>\s+</g, "><").trim();
+const saveButton = document.querySelector("#save-about");
+const resetButton = document.querySelector("#reset-about");
+const statusElement = document.querySelector("#about-storage-status");
 const licenseKey = import.meta.env.VITE_CKEDITOR_LICENSE_KEY;
 const aiTokenUrl = import.meta.env.VITE_CKEDITOR_AI_TOKEN_URL;
 let initialData = null;
+let skipNextAutosave = false;
 
 try {
   initialData = localStorage.getItem(STORAGE_KEY);
@@ -43,9 +50,13 @@ if (!aiTokenUrl) {
   );
 }
 
+function setStatus(message) {
+  statusElement.textContent = message;
+}
+
 InlineEditor.create({
   root: {
-    element: document.querySelector("#editable-about"),
+    element: editableAbout,
     ...(initialData !== null ? { initialData } : {}),
   },
   licenseKey: licenseKey || "<YOUR_LICENSE_KEY>",
@@ -74,8 +85,13 @@ InlineEditor.create({
     ...aiToolbarItems,
   ],
   autosave: {
-    waitingTime: 1000,
+    waitingTime: AUTOSAVE_WAITING_TIME,
     save: (editor) => {
+      if (skipNextAutosave) {
+        skipNextAutosave = false;
+        return Promise.resolve();
+      }
+
       try {
         localStorage.setItem(STORAGE_KEY, editor.getData());
         return Promise.resolve();
@@ -102,6 +118,35 @@ InlineEditor.create({
         },
       }
     : {}),
-}).catch((error) => {
-  console.error("CKEditor failed to initialize.", error);
-});
+})
+  .then((editor) => {
+    if (initialData !== null) {
+      setStatus("Restored saved content from this browser.");
+    }
+
+    saveButton.addEventListener("click", () => {
+      try {
+        localStorage.setItem(STORAGE_KEY, editor.getData());
+        setStatus("Content saved locally in this browser.");
+      } catch (error) {
+        setStatus("Could not save content locally.");
+        console.error("Could not save the About content to localStorage.", error);
+      }
+    });
+
+    resetButton.addEventListener("click", () => {
+      skipNextAutosave = editor.getData() !== originalData;
+      editor.setData(originalData);
+
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        setStatus("Content reset to the original copy; local storage cleared.");
+      } catch (error) {
+        setStatus("Content reset, but local storage could not be cleared.");
+        console.error("Could not clear the About content from localStorage.", error);
+      }
+    });
+  })
+  .catch((error) => {
+    console.error("CKEditor failed to initialize.", error);
+  });
