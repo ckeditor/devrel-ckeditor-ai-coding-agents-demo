@@ -1,17 +1,19 @@
-# Trailhead — CKEditor 5 AI coding-agent demo
+# Trailhead — CKEditor AI coding-agent demo
 
 This repository is a small, runnable showcase for a webinar about integrating
-CKEditor 5 with AI coding agents. The companion event is available on the
+CKEditor with AI coding agents. The companion event is available on the
 [webinar event page](https://app.zuddl.com/p/a/event/1940c878-402a-4801-9239-b0aad2ff95ed).
 
 The app is a fictional Trailhead backcountry trip-planning landing page. Most
 of the page is fixed marketing content; the **About Trailhead** section is the
-demo surface for CKEditor 5.
+demo surface for CKEditor.
+
+![Trailhead demo with the About section open in the editor and the AI assistant panel](assets/screenshot.png)
 
 ## What the demo shows
 
 - A vanilla JavaScript `InlineEditor` embedded in the About section.
-- CKEditor 5's model-based editing pipeline instead of direct DOM HTML editing.
+- CKEditor's model-based editing pipeline instead of direct DOM HTML editing.
 - Premium Format painter and Slash commands.
 - CKEditor AI integration when an AI token endpoint is configured.
 - HTML persistence through CKEditor `editor.getData()` and `localStorage`.
@@ -51,7 +53,7 @@ VITE_CKEDITOR_LICENSE_KEY=<YOUR_CKEDITOR_LICENSE_KEY>
 VITE_CKEDITOR_AI_TOKEN_URL=<YOUR_CKEDITOR_AI_TOKEN_URL>
 ```
 
-The license key is passed to CKEditor 5. The AI plugins and AI toolbar actions
+The license key is passed to CKEditor. The AI plugins and AI toolbar actions
 are enabled only when `VITE_CKEDITOR_AI_TOKEN_URL` is present; without it, the
 editor still runs with the core and other configured features, and logs a
 warning explaining why AI is disabled.
@@ -59,7 +61,7 @@ warning explaining why AI is disabled.
 ## Project shape
 
 - `index.html` — the landing page and the editable `#editable-about` region.
-- `about-editor.js` — CKEditor 5 imports, configuration, AI setup, autosave,
+- `about-editor.js` — CKEditor imports, configuration, AI setup, autosave,
   localStorage restoration, and the demo controls.
 - `styles.css` — landing-page styling and the browser-storage demo panel.
 - `script.js` — small non-editor page behavior such as the footer year.
@@ -95,7 +97,7 @@ MCP setup are there to give the agent current integration guidance.
 The initial request established the selection criteria: a real WYSIWYG editor
 with an abstract document model between content and the DOM, enterprise
 features, AI-generated rich HTML, collaboration, comments, track changes,
-revision history, export, and strong reliability. That led to CKEditor 5 as
+revision history, export, and strong reliability. That led to CKEditor as
 the single editor recommendation.
 
 ### 2. Ask how an AI coding agent should use CKEditor
@@ -106,7 +108,7 @@ wiring the editor, mapping features, loading styles, and keeping configuration
 current. The answer identified the official CKEditor agent skill and the
 documentation MCP server.
 
-CKEditor documents this workflow in [Using CKEditor 5 with AI coding
+CKEditor documents this workflow in [Using CKEditor with AI coding
 agents](https://ckeditor.com/docs/ckeditor5/latest/getting-started/ai-coding-agents.html).
 The page explains that the skill can choose npm/CDN/ZIP, wire vanilla JS or
 official framework integrations, configure plugins and styles, set licensing,
@@ -134,7 +136,7 @@ The implementation prompt was:
 ```text
 This is a vanilla JavaScript landing page (npm project, no framework). Use the
 CKEditor skill to make the hero "About" section of index.html editable inline:
-the heading and the paragraphs. Install CKEditor 5 via npm. Enable premium
+the heading and the paragraphs. Install CKEditor via npm. Enable premium
 productivity features: Format painter, Slash commands, and CKEditor AI. Do not
 change anything outside that section.
 ```
@@ -197,8 +199,8 @@ not immediately undone.
 
 ## Useful references
 
-- [CKEditor 5 with AI coding agents](https://ckeditor.com/docs/ckeditor5/latest/getting-started/ai-coding-agents.html)
+- [CKEditor with AI coding agents](https://ckeditor.com/docs/ckeditor5/latest/getting-started/ai-coding-agents.html)
 - [Getting and setting CKEditor data](https://ckeditor.com/docs/ckeditor5/latest/getting-started/setup/getting-and-setting-data.html)
-- [CKEditor 5 Autosave](https://ckeditor.com/docs/ckeditor5/latest/features/autosave.html)
-- [CKEditor 5 documentation MCP](https://ckeditor5.mcp.kapa.ai)
+- [CKEditor Autosave](https://ckeditor.com/docs/ckeditor5/latest/features/autosave.html)
+- [CKEditor documentation MCP](https://ckeditor5.mcp.kapa.ai)
 - [Trailhead webinar showcase event](https://app.zuddl.com/p/a/event/1940c878-402a-4801-9239-b0aad2ff95ed)
